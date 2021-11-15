@@ -8,9 +8,10 @@ public class Main {
         PositiveNumberContainer container = new PositiveNumberContainer();
 
         System.out.println("Adj meg pozitív egész számokat, enterrel elválasztva.");
+        double number;
         boolean positive = true;
         while (positive) {
-            double number = sc.nextDouble();
+            number = sc.nextDouble();
             if (number > 0) {
                 container.add(number);
             } else {
