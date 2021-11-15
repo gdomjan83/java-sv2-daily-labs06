@@ -10,7 +10,7 @@ public class Main {
         System.out.println("Adj meg pozitív egész számokat, enterrel elválasztva.");
         boolean positive = true;
         while (positive) {
-            int number = sc.nextInt();
+            double number = sc.nextDouble();
             if (number > 0) {
                 container.add(number);
             } else {

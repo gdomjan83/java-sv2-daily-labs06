@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PositiveNumberContainer {
-    private List<Integer> numbers = new ArrayList<>();
+    private List<Double> numbers = new ArrayList<>();
 
-    public void add(Integer number) {
+    public void add(Double number) {
         numbers.add(number);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (Integer num : numbers) {
+        for (Double num : numbers) {
             sb.append(num + " ");
         }
         return new String(sb);
