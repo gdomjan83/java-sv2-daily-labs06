@@ -1,4 +1,4 @@
-package cars;
+package day02.cars;
 
 public class Car {
     private String brand;

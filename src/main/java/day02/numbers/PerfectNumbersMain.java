@@ -1,4 +1,4 @@
-package numbers;
+package day02.numbers;
 
 public class PerfectNumbersMain {
 

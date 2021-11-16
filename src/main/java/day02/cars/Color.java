@@ -1,4 +1,4 @@
-package cars;
+package day02.cars;
 
 public enum Color {
 

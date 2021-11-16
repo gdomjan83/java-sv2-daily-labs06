@@ -1,4 +1,4 @@
-package cars;
+package day02.cars;
 
 import java.util.ArrayList;
 import java.util.List;
