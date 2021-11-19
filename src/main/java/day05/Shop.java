@@ -6,7 +6,7 @@ import java.util.List;
 public class Shop {
     private List<Product> products = new ArrayList<>();
 
-    public List<Product> getProducts() {
+    public List<Product> getProducts(){
         return products;
     }
 

@@ -4,7 +4,7 @@ public class ProductWithPiece {
     private Type type;
     private int count = 1;
 
-    public ProductWithPiece(Type type) {
+    public ProductWithPiece(Type type){
         this.type = type;
     }
 

@@ -8,7 +8,7 @@ public class ProductWithPieceTest {
     ProductWithPiece pwp = new ProductWithPiece(Type.DIARY);
 
     @Test
-    public void testProductWithPeaceInit() {
+    public void testProductWithPeaceInit(){
         assertEquals(Type.DIARY, pwp.getType());
         assertEquals(1, pwp.getCount());
     }
