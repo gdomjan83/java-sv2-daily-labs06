@@ -1,10 +1,10 @@
 package day05;
 
-public class ProductWithPiece {
+public class ProductNumberByType {
     private Type type;
     private int count = 1;
 
-    public ProductWithPiece(Type type){
+    public ProductNumberByType(Type type) {
         this.type = type;
     }
 

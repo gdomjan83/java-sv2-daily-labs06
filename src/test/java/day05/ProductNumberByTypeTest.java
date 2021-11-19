@@ -4,11 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ProductWithPieceTest {
-    ProductWithPiece pwp = new ProductWithPiece(Type.DIARY);
+public class ProductNumberByTypeTest {
+    ProductNumberByType pwp = new ProductNumberByType(Type.DIARY);
 
     @Test
-    public void testProductWithPeaceInit(){
+    public void testProductNumberByTypeInit(){
         assertEquals(Type.DIARY, pwp.getType());
         assertEquals(1, pwp.getCount());
     }

@@ -6,7 +6,7 @@ import java.util.List;
 public class Shop {
     private List<Product> products = new ArrayList<>();
 
-    public List<Product> getProducts(){
+    public List<Product> getProducts() {
         return products;
     }
 
@@ -14,21 +14,22 @@ public class Shop {
         products.add(item);
     }
 
-    public List<ProductWithPiece> giveProductNumberByType() {
-        List<ProductWithPiece> result = new ArrayList<>();
+    public List<ProductNumberByType> getProductNumberByType() {
+        List<ProductNumberByType> result = new ArrayList<>();
+
         for (Product actual : products) {
-            ProductWithPiece productWithPiece = containsProduct(actual, result);
-            if (productWithPiece != null) {
-                productWithPiece.addCount();
+            ProductNumberByType productNumberByType = containsProduct(actual, result);
+            if (productNumberByType != null) {
+                productNumberByType.addCount();
             } else {
-                result.add(new ProductWithPiece(actual.getType()));
+                result.add(new ProductNumberByType(actual.getType()));
             }
         }
         return result;
     }
 
-    private ProductWithPiece containsProduct(Product actual, List<ProductWithPiece> result) {
-        for (ProductWithPiece pwp : result) {
+    private ProductNumberByType containsProduct(Product actual, List<ProductNumberByType> result) {
+        for (ProductNumberByType pwp : result) {
             if (actual.getType() == pwp.getType()) {
                 return pwp;
             }
