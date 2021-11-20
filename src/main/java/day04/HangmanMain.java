@@ -7,11 +7,11 @@ public class HangmanMain {
         BusinessModell businessModell = new BusinessModell("kutya", 5);
         Scanner sc = new Scanner(System.in);
 
-        while (businessModell.isGameRunning()) {
+        while (businessModell.isGameRunning() == State.RUNNING) {
             printStatus(businessModell.getStatus(), businessModell.getTries());
             String letter = sc.nextLine();
 
-            if (businessModell.checkGuess(letter)) {
+            if (businessModell.checkGuess(letter) == State.SUCCESS) {
                 System.out.println("Helyes tipp!");
             } else {
                 System.out.println("Rossz tipp.");
@@ -34,7 +34,7 @@ public class HangmanMain {
         } else {
             System.out.println("Melyik szóra gondoltunk?");
 
-            if (businessModell.takeGuess(sc)) {
+            if (businessModell.takeGuess(sc) == State.SUCCESS) {
                 System.out.println("Gratulálunk, a megoldás valóban: " + businessModell.getWord());
             } else {
                 System.out.println("Sajnos nem jól tippeltél.");

@@ -30,24 +30,24 @@ public class BusinessModell {
         return wordSolved;
     }
 
-    public boolean isGameRunning() {
+    public State isGameRunning() {
         if (!wordSolved && tries > 0) {
-            return true;
+            return State.RUNNING;
         }
-        return false;
+        return State.END;
     }
 
     public void setWordSolved() {
         wordSolved = word.equals(status);
     }
 
-    public boolean checkGuess(String guess) {
+    public State checkGuess(String guess) {
         if (word.contains(guess)) {
             updateLetter(guess);
-            return true;
+            return State.SUCCESS;
         } else {
             tries--;
-            return false;
+            return State.FAILED;
         }
     }
 
@@ -61,11 +61,11 @@ public class BusinessModell {
         status = new String(statusCharacters);
     }
 
-    public boolean takeGuess(Scanner sc) {
+    public State takeGuess(Scanner sc) {
         String userTry = sc.nextLine();
         if (word.equals(userTry)) {
-            return true;
+            return State.SUCCESS;
         }
-        return false;
+        return State.FAILED;
     }
 }
