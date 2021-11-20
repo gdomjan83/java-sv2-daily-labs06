@@ -4,14 +4,14 @@ import java.util.Scanner;
 
 public class Hangman {
     private String word;
-    private boolean[] lettersFound;
-    private boolean wordSolved = false;
+    private String status;
     private int tries;
+    private boolean wordSolved = false;
 
     public Hangman(String word, int tries) {
         this.word = word;
-        this.lettersFound = new boolean[word.length()];
         this.tries = tries;
+        this.status = "*".repeat(word.length());
     }
 
     public void runGame() {
@@ -19,52 +19,49 @@ public class Hangman {
         String letter;
 
         while (!wordSolved && (tries > 0)) {
-            letter = inputOutput(sc);
-            tries--;
+            letter = inputOutput();
             checkLetter(letter);
-            wordSolved = isAllFound();
+            tries--;
+            if (!status.contains("*")) {
+                wordSolved = true;
+            }
         }
+        endingGame(wordSolved);
+    }
+
+    private void checkLetter(String s) {
+        char[] statusCharacters = status.toCharArray();
+
+        for (int i = 0; i < word.length(); i++) {
+            if (word.charAt(i) == s.charAt(0)) {
+                statusCharacters[i] = s.charAt(0);
+            }
+        }
+        status = new String(statusCharacters);
+    }
+
+    private String inputOutput() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("A szó: " + status);
+        System.out.println("Még " + tries + " alkalommal próbálkozhatsz.");
+        System.out.println("Adj meg egy betűt:");
+        return sc.nextLine();
+    }
+
+    private void endingGame(boolean wordSolved) {
+        Scanner sc = new Scanner(System.in);
 
         if (wordSolved) {
             System.out.println("Gratulálunk, a megoldás valóban: " + word);
         } else {
-            System.out.println("Sajnos nincs több lehetőséged.");
-        }
-    }
+            System.out.println("Írd be a tipped:");
+            String userTry = sc.nextLine();
 
-    private String inputOutput(Scanner scanner) {
-        System.out.println("A szó: " + showWord());
-        System.out.println("Még " + tries + " alkalommal próbálkozhatsz.");
-        System.out.println("Adj meg egy betűt:");
-        return scanner.nextLine();
-    }
-
-    private void checkLetter(String s) {
-        for (int i = 0; i < word.length(); i++) {
-            if (word.toCharArray()[i] == s.charAt(0)) {
-                lettersFound[i] = true;
-            }
-        }
-    }
-
-    private boolean isAllFound() {
-        for (Boolean actual : lettersFound) {
-            if (!actual) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private String showWord() {
-        StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < word.length(); i++) {
-            if (lettersFound[i]) {
-                sb.append(word.charAt(i));
+            if (word.equals(userTry)) {
+                System.out.println("Gratulálunk, a megoldás valóban: " + word);
             } else {
-                sb.append('*');
+                System.out.println("Sajnos nem jól tippeltél.");
             }
         }
-        return new String(sb);
     }
 }
