@@ -19,19 +19,14 @@ public class HangmanVersion2 {
         String letter;
 
         while (!wordSolved && (tries > 0)) {
-            letter = inputOutput(sc);
+            letter = inputOutput();
             checkLetter(letter);
             tries--;
             if (!status.contains("*")) {
                 wordSolved = true;
             }
         }
-
-        if (wordSolved) {
-            System.out.println("Gratulálunk, a megoldás valóban: " + word);
-        } else {
-            System.out.println("Sajnos nincs több lehetőséged.");
-        }
+        endingGame(wordSolved);
     }
 
     private void checkLetter(String s) {
@@ -45,10 +40,28 @@ public class HangmanVersion2 {
         status = new String(statusCharacters);
     }
 
-    private String inputOutput(Scanner scanner) {
+    private String inputOutput() {
+        Scanner sc = new Scanner(System.in);
         System.out.println("A szó: " + status);
         System.out.println("Még " + tries + " alkalommal próbálkozhatsz.");
         System.out.println("Adj meg egy betűt:");
-        return scanner.nextLine();
+        return sc.nextLine();
+    }
+
+    private void endingGame(boolean wordSolved) {
+        Scanner sc = new Scanner(System.in);
+
+        if (wordSolved) {
+            System.out.println("Gratulálunk, a megoldás valóban: " + word);
+        } else {
+            System.out.println("Írd be a tipped:");
+            String userTry = sc.nextLine();
+
+            if (word.equals(userTry)) {
+                System.out.println("Gratulálunk, a megoldás valóban: " + word);
+            } else {
+                System.out.println("Sajnos nem jól tippeltél.");
+            }
+        }
     }
 }
