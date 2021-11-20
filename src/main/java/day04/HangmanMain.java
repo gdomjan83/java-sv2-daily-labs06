@@ -21,13 +21,13 @@ public class HangmanMain {
         endingGame(businessModell, sc);
     }
 
-    public void printStatus(String status, int tries) {
+    private void printStatus(String status, int tries) {
         System.out.println("A szó: " + status);
         System.out.println("Még " + tries + " alkalommal próbálkozhatsz.");
         System.out.println("Adj meg egy betűt:");
     }
 
-    public void endingGame(BusinessModell businessModell, Scanner sc) {
+    private void endingGame(BusinessModell businessModell, Scanner sc) {
 
         if (businessModell.isWordSolved()) {
             System.out.println("Gratulálunk, a megoldás valóban: " + businessModell.getWord());

@@ -51,6 +51,14 @@ public class BusinessModell {
         }
     }
 
+    public State takeGuess(Scanner sc) {
+        String userTry = sc.nextLine();
+        if (word.equals(userTry)) {
+            return State.SUCCESS;
+        }
+        return State.FAILED;
+    }
+
     private void updateLetter(String s) {
         char[] statusCharacters = status.toCharArray();
         for (int i = 0; i < word.length(); i++) {
@@ -59,13 +67,5 @@ public class BusinessModell {
             }
         }
         status = new String(statusCharacters);
-    }
-
-    public State takeGuess(Scanner sc) {
-        String userTry = sc.nextLine();
-        if (word.equals(userTry)) {
-            return State.SUCCESS;
-        }
-        return State.FAILED;
     }
 }
