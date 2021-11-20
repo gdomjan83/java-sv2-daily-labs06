@@ -8,7 +8,7 @@ public class HangmanMain {
         Scanner sc = new Scanner(System.in);
 
         while (businessModell.isGameRunning() == State.RUNNING) {
-            printStatus(businessModell.getStatus(), businessModell.getTries());
+            printStatus(businessModell.getLettersFound(), businessModell.getTries());
             String letter = sc.nextLine();
 
             if (businessModell.checkGuess(letter) == State.SUCCESS) {
@@ -30,12 +30,12 @@ public class HangmanMain {
     private void endingGame(BusinessModell businessModell, Scanner sc) {
 
         if (businessModell.isWordSolved()) {
-            System.out.println("Gratulálunk, a megoldás valóban: " + businessModell.getWord());
+            System.out.println("Gratulálunk, a megoldás valóban: " + businessModell.getWordToFind());
         } else {
             System.out.println("Melyik szóra gondoltunk?");
 
             if (businessModell.takeGuess(sc) == State.SUCCESS) {
-                System.out.println("Gratulálunk, a megoldás valóban: " + businessModell.getWord());
+                System.out.println("Gratulálunk, a megoldás valóban: " + businessModell.getWordToFind());
             } else {
                 System.out.println("Sajnos nem jól tippeltél.");
             }

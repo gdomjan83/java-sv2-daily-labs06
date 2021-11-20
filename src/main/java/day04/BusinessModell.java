@@ -3,23 +3,23 @@ package day04;
 import java.util.Scanner;
 
 public class BusinessModell {
-    private String word;
-    private String status;
+    private String wordToFind;
+    private String lettersFound;
     private int tries;
     private boolean wordSolved;
 
-    public BusinessModell(String word, int tries) {
-        this.word = word;
+    public BusinessModell(String wordToFind, int tries) {
+        this.wordToFind = wordToFind;
         this.tries = tries;
-        this.status = "*".repeat(word.length());
+        this.lettersFound = "*".repeat(wordToFind.length());
     }
 
-    public String getWord() {
-        return word;
+    public String getWordToFind() {
+        return wordToFind;
     }
 
-    public String getStatus() {
-        return status;
+    public String getLettersFound() {
+        return lettersFound;
     }
 
     public int getTries() {
@@ -38,11 +38,11 @@ public class BusinessModell {
     }
 
     public void setWordSolved() {
-        wordSolved = word.equals(status);
+        wordSolved = wordToFind.equals(lettersFound);
     }
 
     public State checkGuess(String guess) {
-        if (word.contains(guess)) {
+        if (wordToFind.contains(guess)) {
             updateLetter(guess);
             return State.SUCCESS;
         } else {
@@ -52,20 +52,20 @@ public class BusinessModell {
     }
 
     public State takeGuess(Scanner sc) {
-        String userTry = sc.nextLine();
-        if (word.equals(userTry)) {
+        String userGuess = sc.nextLine();
+        if (wordToFind.equals(userGuess)) {
             return State.SUCCESS;
         }
         return State.FAILED;
     }
 
     private void updateLetter(String s) {
-        char[] statusCharacters = status.toCharArray();
-        for (int i = 0; i < word.length(); i++) {
-            if (word.charAt(i) == s.charAt(0)) {
+        char[] statusCharacters = lettersFound.toCharArray();
+        for (int i = 0; i < wordToFind.length(); i++) {
+            if (wordToFind.charAt(i) == s.charAt(0)) {
                 statusCharacters[i] = s.charAt(0);
             }
         }
-        status = new String(statusCharacters);
+        lettersFound = new String(statusCharacters);
     }
 }
