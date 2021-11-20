@@ -1,9 +1,48 @@
 package day04;
 
-public class HangmanMain {
-    public static void main(String[] args) {
-        Hangman hangman = new Hangman("kutya", 5);
+import java.util.Scanner;
 
-        hangman.runGame();
+public class HangmanMain {
+    public void runGame() {
+        BusinessModell businessModell = new BusinessModell("kutya", 5);
+        Scanner sc = new Scanner(System.in);
+
+        while (businessModell.isGameRunning()) {
+            printStatus(businessModell.getStatus(), businessModell.getTries());
+            String letter = sc.nextLine();
+
+            if (businessModell.checkGuess(letter)) {
+                System.out.println("Helyes tipp!");
+            } else {
+                System.out.println("Rossz tipp.");
+            }
+            businessModell.setWordSolved();
+        }
+        endingGame(businessModell, sc);
+    }
+
+    public void printStatus(String status, int tries) {
+        System.out.println("A szó: " + status);
+        System.out.println("Még " + tries + " alkalommal próbálkozhatsz.");
+        System.out.println("Adj meg egy betűt:");
+    }
+
+    public void endingGame(BusinessModell businessModell, Scanner sc) {
+
+        if (businessModell.isWordSolved()) {
+            System.out.println("Gratulálunk, a megoldás valóban: " + businessModell.getWord());
+        } else {
+            System.out.println("Melyik szóra gondoltunk?");
+
+            if (businessModell.takeGuess(sc)) {
+                System.out.println("Gratulálunk, a megoldás valóban: " + businessModell.getWord());
+            } else {
+                System.out.println("Sajnos nem jól tippeltél.");
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        new HangmanMain().runGame();
     }
 }
